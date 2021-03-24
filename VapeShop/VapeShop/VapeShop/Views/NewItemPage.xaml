@@ -4,17 +4,25 @@
              x:Class="VapeShop.Views.NewItemPage"
              Shell.PresentationMode="ModalAnimated"
              Title="New Item"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             xmlns:viewmodels="clr-namespace:VapeShop.ViewModels" 
+             x:DataType="viewmodels:NewItemViewModel"
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="Модель" FontSize="Medium" />
+            <Entry Text="{Binding Name, Mode=TwoWay}" Placeholder="Введите модель" FontSize="Medium" />
+            <Label Text="Цена" FontSize="Medium" />
+            <Entry Text="{Binding Cost, Mode=TwoWay}" Keyboard="Numeric" Placeholder="Введите цену (р.)" FontSize="Medium" />
+            <Label Text="Вес" FontSize="Medium" />
+            <Entry Text="{Binding Weight, Mode=TwoWay}" Keyboard="Numeric" Placeholder="Введите вес (г.)" FontSize="Medium" />
+            <Label Text="Мощность батареи" FontSize="Medium" />
+            <Entry Text="{Binding BatteryPower, Mode=TwoWay}" Keyboard="Numeric" Placeholder="Введите мощность батареи (мАч)" FontSize="Medium" />
+            <Label Text="Описание" FontSize="Medium" />
+            <Editor Text="{Binding Description, Mode=TwoWay}" Placeholder="Введите описание" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Отмена" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Добавить" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

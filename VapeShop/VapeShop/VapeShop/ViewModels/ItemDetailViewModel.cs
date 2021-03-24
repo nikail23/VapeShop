@@ -13,9 +13,16 @@ namespace VapeShop.ViewModels
         private string name;
         private int cost;
         private int battery;
+        private int weight;
         private string description;
 
         public string Id { get; set; }
+
+        public int Weight
+        {
+            get => weight;
+            set => SetProperty(ref weight, value);
+        }
 
         public int BatteryPower
         {
@@ -59,16 +66,17 @@ namespace VapeShop.ViewModels
             Title = "Подробнее";
         }
 
-        public async void LoadItemId(string itemId)
+        public async void LoadItemId(string vapeId)
         {
             try
             {
-                var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Name = item.Name;
-                Cost = item.Cost;
-                Description = item.Description;
-                BatteryPower = item.BatteryPower;
+                var vape = await DataStore.GetVapeAsync(vapeId);
+                Id = vape.Id;
+                Name = vape.Name;
+                Cost = vape.Cost;
+                Description = vape.Description;
+                BatteryPower = vape.BatteryPower;
+                Weight = vape.Weight;
             }
             catch (Exception)
             {

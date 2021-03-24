@@ -13,6 +13,8 @@
         <Label Text="{Binding Cost, StringFormat='\{0\} р.'}" FontSize="Small"/>
         <Label Text="Мощность батареи:" FontSize="Medium" />
         <Label Text="{Binding BatteryPower, StringFormat='\{0\} мАч'}" FontSize="Small"/>
+        <Label Text="Вес:" FontSize="Medium" />
+        <Label Text="{Binding Weight, StringFormat='\{0\} г.'}" FontSize="Small"/>
         <Label Text="Описание:" FontSize="Medium" />
         <Label Text="{Binding Description}" FontSize="Small"/>
     </StackLayout>

@@ -8,11 +8,11 @@ namespace VapeShop.Services
 {
     public class MockDataStore : IDataStore<Vape>
     {
-        readonly List<Vape> items;
+        readonly List<Vape> vapes;
 
         public MockDataStore()
         {
-            items = new List<Vape>()
+            vapes = new List<Vape>()
             {
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -23,7 +23,8 @@ namespace VapeShop.Services
                     "так и продвинутыми пользователями. Устройство легко заряжается через USB провод. " +
                     "Компактный и эргономичный, прибор легко умещается на ладони.",
                     Cost = 1500,
-                    BatteryPower = 370
+                    BatteryPower = 370,
+                    Weight = 87
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -34,7 +35,8 @@ namespace VapeShop.Services
                     "Объём атомайзера в 2 мл позволяет использовать прибор в течение нескольких недель. " +
                     "Аккумулятор в 400 мАч прекрасно держит заряд. Его хватает для использования в течении 2 часов.",
                     Cost = 1700,
-                    BatteryPower = 400
+                    BatteryPower = 400,
+                    Weight = 87
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -45,7 +47,8 @@ namespace VapeShop.Services
                     "На корпусе из информативных вещей расположен небольшой светодиодный индикатор," +
                     " позволяющий понять примерный уровень заряда аккумулятора.",
                     Cost = 2000,
-                    BatteryPower = 1000
+                    BatteryPower = 1000,
+                    Weight = 120
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -55,7 +58,8 @@ namespace VapeShop.Services
                     " который можно наполнить любимым ароматом. Дизайн был тщательно продуман производителем, в нём сочетается" +
                     " эргономика и стиль.",
                     Cost = 2300,
-                    BatteryPower = 900
+                    BatteryPower = 900,
+                    Weight = 101
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -64,7 +68,8 @@ namespace VapeShop.Services
                     "Дизайн новой версии остался узнаваемым и эргономичным, поэтому никаких сложностей с его использованием не будет. " +
                     "При этом производитель предлагает большой выбор расцветок, а также возможность кастомизации девайса при помощи специальных наклеек.",
                     Cost = 2500,
-                    BatteryPower = 800
+                    BatteryPower = 800,
+                    Weight = 100
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -73,7 +78,8 @@ namespace VapeShop.Services
                     "Большой объём аккумулятора позволяет не так часто заряжать электронную сигарету. " +
                     "Коннектор 510 позволяет использовать в девайсе любые аксессуары, совместимые сданным коннектором.",
                     Cost = 2500,
-                    BatteryPower = 1100
+                    BatteryPower = 1100,
+                    Weight = 100
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -83,7 +89,8 @@ namespace VapeShop.Services
                     "В зависимости от приобретённых батарей и будет работать устройство. " +
                     "Максимальная мощность составляет 220 Вт.",
                     Cost = 2500,
-                    BatteryPower = 3600
+                    BatteryPower = 3600,
+                    Weight = 120
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -92,7 +99,8 @@ namespace VapeShop.Services
                     "Мощность батареи в 2000 мАч обеспечивает автономную работу до 5 часов. " +
                     "Стильный и эргономичный дизайн также являются преимуществом данной модели.",
                     Cost = 2500,
-                    BatteryPower = 2000
+                    BatteryPower = 2000,
+                    Weight = 250
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -102,43 +110,44 @@ namespace VapeShop.Services
                     "Таким образом каждый может выбрать автономное время работы. " +
                     "Объём атомайзера в 5,5 мл позволяет редко прибегать к заправке.",
                     Cost = 3500,
-                    BatteryPower = 3600
+                    BatteryPower = 3600,
+                    Weight = 150
                 }
             };
         }
 
-        public async Task<bool> AddItemAsync(Vape item)
+        public async Task<bool> AddVapeAsync(Vape item)
         {
-            items.Add(item);
+            vapes.Add(item);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateItemAsync(Vape item)
+        public async Task<bool> UpdateVapeAsync(Vape item)
         {
-            var oldItem = items.Where((Vape arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
-            items.Add(item);
+            var oldItem = vapes.Where((Vape arg) => arg.Id == item.Id).FirstOrDefault();
+            vapes.Remove(oldItem);
+            vapes.Add(item);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteVapeAsync(string id)
         {
-            var oldItem = items.Where((Vape arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
+            var oldItem = vapes.Where((Vape arg) => arg.Id == id).FirstOrDefault();
+            vapes.Remove(oldItem);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Vape> GetItemAsync(string id)
+        public async Task<Vape> GetVapeAsync(string id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(vapes.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<Vape>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Vape>> GetVapesAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(items);
+            return await Task.FromResult(vapes);
         }
     }
 }
