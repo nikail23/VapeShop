@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "20674879636",
+    "project_id": "vapeshop-f6ca5",
+    "storage_bucket": "vapeshop-f6ca5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20674879636:android:7b6241b128d535e12fd481",
+        "android_client_info": {
+          "package_name": "com.companyname.vapeshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "20674879636-r7j0k375chob0nvi385hl2ihk6jr59il.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYlKp_ba0_Q57kSSfU4g0C8jVQ7aThtQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "20674879636-r7j0k375chob0nvi385hl2ihk6jr59il.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

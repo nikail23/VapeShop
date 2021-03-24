@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:VapeShop.ViewModels" 
+             x:DataType="viewmodels:ItemDetailViewModel"
+             x:Class="VapeShop.Views.ItemDetailPage"
+             Title="{Binding Title}">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Модель:" FontSize="Medium" />
+        <Label Text="{Binding Name}" FontSize="Small"/>
+        <Label Text="Стоимость:" FontSize="Medium" />
+        <Label Text="{Binding Cost, StringFormat='\{0\} р.'}" FontSize="Small"/>
+        <Label Text="Мощность батареи:" FontSize="Medium" />
+        <Label Text="{Binding BatteryPower, StringFormat='\{0\} мАч'}" FontSize="Small"/>
+        <Label Text="Описание:" FontSize="Medium" />
+        <Label Text="{Binding Description}" FontSize="Small"/>
+    </StackLayout>
+    
+</ContentPage>
