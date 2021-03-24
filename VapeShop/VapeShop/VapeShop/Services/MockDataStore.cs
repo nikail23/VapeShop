@@ -134,11 +134,27 @@ namespace VapeShop.Services
             return await Task.FromResult(true);
         }
 
+        private int GetVapeId(Vape vape)
+        {
+            var result = 0;
+            foreach (var buffer in vapes)
+            {
+                if (buffer.Id == vape.Id)
+                {
+                    return result;
+                }
+                result++;
+            }
+            return -1;
+        }
+
         public async Task<bool> UpdateVapeAsync(Vape item)
         {
-            var oldItem = vapes.Where((Vape arg) => arg.Id == item.Id).FirstOrDefault();
-            vapes.Remove(oldItem);
-            vapes.Add(item);
+            var id = GetVapeId(item);
+            if (id > -1)
+            {
+                vapes[id] = item;
+            }
 
             return await Task.FromResult(true);
         }

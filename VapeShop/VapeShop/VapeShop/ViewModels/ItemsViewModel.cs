@@ -15,6 +15,7 @@ namespace VapeShop.ViewModels
         public ObservableCollection<Vape> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
+        public Command<Vape> EditButtonClicked { get; }
         public Command<Vape> ItemTapped { get; }
 
         public ItemsViewModel()
@@ -23,6 +24,7 @@ namespace VapeShop.ViewModels
             Items = new ObservableCollection<Vape>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
+            EditButtonClicked = new Command<Vape>(OnEditButtonClicked);
             ItemTapped = new Command<Vape>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
@@ -67,9 +69,24 @@ namespace VapeShop.ViewModels
             }
         }
 
+        public async void DeleteVape(string vapeId)
+        {
+            await DataStore.DeleteVapeAsync(vapeId);
+        }
+
         private async void OnAddItem(object obj)
         {
             await Shell.Current.GoToAsync(nameof(NewItemPage));
+        }
+
+        async void OnEditButtonClicked(Vape item)
+        {
+            if (item == null)
+                return;
+
+            // This will push the EditItemPage onto the navigation stack
+            string path = $"{nameof(EditItemPage)}?{nameof(EditItemViewModel.ItemId)}={item.Id}";
+            await Shell.Current.GoToAsync(path);
         }
 
         async void OnItemSelected(Vape item)
@@ -78,7 +95,8 @@ namespace VapeShop.ViewModels
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            string path = $"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}";
+            await Shell.Current.GoToAsync(path);
         }
     }
 }
