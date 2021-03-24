@@ -2,29 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VapeShop.Views.NewItemPage"
-             Shell.PresentationMode="ModalAnimated"
-             Title="New Item"
+             Title="Новый Vape"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              xmlns:viewmodels="clr-namespace:VapeShop.ViewModels" 
              x:DataType="viewmodels:NewItemViewModel"
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
-        <StackLayout Spacing="3" Padding="15">
-            <Label Text="Модель" FontSize="Medium" />
-            <Entry Text="{Binding Name, Mode=TwoWay}" Placeholder="Введите модель" FontSize="Medium" />
-            <Label Text="Цена" FontSize="Medium" />
-            <Entry Text="{Binding Cost, Mode=TwoWay}" Keyboard="Numeric" Placeholder="Введите цену (р.)" FontSize="Medium" />
-            <Label Text="Вес" FontSize="Medium" />
-            <Entry Text="{Binding Weight, Mode=TwoWay}" Keyboard="Numeric" Placeholder="Введите вес (г.)" FontSize="Medium" />
-            <Label Text="Мощность батареи" FontSize="Medium" />
-            <Entry Text="{Binding BatteryPower, Mode=TwoWay}" Keyboard="Numeric" Placeholder="Введите мощность батареи (мАч)" FontSize="Medium" />
-            <Label Text="Описание" FontSize="Medium" />
-            <Editor Text="{Binding Description, Mode=TwoWay}" Placeholder="Введите описание" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Отмена" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Добавить" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <StackLayout Spacing="20" Padding="15" VerticalOptions="StartAndExpand">
+                <Label Text="Модель" FontSize="Medium" />
+                <Entry Text="{Binding Name, Mode=TwoWay}" Placeholder="Введите модель" FontSize="Medium" />
+                <Label Text="Цена" FontSize="Medium" />
+                <Entry Text="{Binding Cost, Mode=TwoWay}" Keyboard="Numeric" Placeholder="Введите цену (р.)" FontSize="Medium" />
+                <Label Text="Вес" FontSize="Medium" />
+                <Entry Text="{Binding Weight, Mode=TwoWay}" Keyboard="Numeric" Placeholder="Введите вес (г.)" FontSize="Medium" />
+                <Label Text="Мощность батареи" FontSize="Medium" />
+                <Entry Text="{Binding BatteryPower, Mode=TwoWay}" Keyboard="Numeric" Placeholder="Введите мощность батареи (мАч)" FontSize="Medium" />
+                <Label Text="Описание" FontSize="Medium" />
+                <Editor Text="{Binding Description, Mode=TwoWay}" Placeholder="Введите описание" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+                <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
+                    <Button Text="Load photo" Command="{Binding GetPhoto}" HorizontalOptions="Start" WidthRequest="100" HeightRequest="50"></Button>
+                    <Button Text="Take photo" Command="{Binding TakePhoto}" HorizontalOptions="Start" WidthRequest="100" HeightRequest="50"></Button>
+                </StackLayout>
+                <Image Source="{Binding Image.Source}" HeightRequest="400"></Image>
+                <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
+                    <Button Text="Отмена" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                    <Button Text="Добавить" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
-    
 </ContentPage>

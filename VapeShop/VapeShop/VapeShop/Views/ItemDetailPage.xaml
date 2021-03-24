@@ -6,17 +6,19 @@
              x:Class="VapeShop.Views.ItemDetailPage"
              Title="{Binding Title}">
 
-    <StackLayout Spacing="20" Padding="15">
-        <Label Text="Модель:" FontSize="Medium" />
-        <Label Text="{Binding Name}" FontSize="Small"/>
-        <Label Text="Стоимость:" FontSize="Medium" />
-        <Label Text="{Binding Cost, StringFormat='\{0\} р.'}" FontSize="Small"/>
-        <Label Text="Мощность батареи:" FontSize="Medium" />
-        <Label Text="{Binding BatteryPower, StringFormat='\{0\} мАч'}" FontSize="Small"/>
-        <Label Text="Вес:" FontSize="Medium" />
-        <Label Text="{Binding Weight, StringFormat='\{0\} г.'}" FontSize="Small"/>
-        <Label Text="Описание:" FontSize="Medium" />
-        <Label Text="{Binding Description}" FontSize="Small"/>
-    </StackLayout>
-    
+    <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
+        <StackLayout Spacing="20" Padding="15" VerticalOptions="StartAndExpand">
+            <Label Text="Модель:" FontSize="Medium" />
+            <Label Text="{Binding Name}" FontSize="Small"/>
+            <Image Source="{Binding Image.Source}" HeightRequest="400"></Image>
+            <Label Text="Стоимость:" FontSize="Medium" />
+            <Label Text="{Binding Cost, StringFormat='\{0\} р.'}" FontSize="Small"/>
+            <Label Text="Мощность батареи:" FontSize="Medium" />
+            <Label Text="{Binding BatteryPower, StringFormat='\{0\} мАч'}" FontSize="Small"/>
+            <Label Text="Вес:" FontSize="Medium" />
+            <Label Text="{Binding Weight, StringFormat='\{0\} г.'}" FontSize="Small"/>
+            <Label Text="Описание:" FontSize="Medium" />
+            <Label Text="{Binding Description}" FontSize="Small"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

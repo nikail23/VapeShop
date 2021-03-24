@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
 using VapeShop.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace VapeShop.ViewModels
@@ -14,11 +12,15 @@ namespace VapeShop.ViewModels
         private int cost;
         private int weight;
         private int battery;
+        public Image Image { get; set; }
 
         public NewItemViewModel()
         {
+            Image = new Image();
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
+            GetPhoto = new Command(GetPhotoAsync);
+            TakePhoto = new Command(TakePhotoAsync);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
         }
@@ -61,6 +63,8 @@ namespace VapeShop.ViewModels
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
+        public Command TakePhoto { get; }
+        public Command GetPhoto { get; }
 
         private async void OnCancel()
         {
@@ -77,13 +81,43 @@ namespace VapeShop.ViewModels
                 Description = Description,
                 Weight = Weight,
                 Cost = Cost,
-                BatteryPower = BatteryPower
+                BatteryPower = BatteryPower,
+                Image = Image
             };
 
             await DataStore.AddVapeAsync(newItem);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
+        }
+
+        private async void GetPhotoAsync()
+        {
+            try
+            {
+                var photo = await MediaPicker.PickPhotoAsync();
+                Image.Source = ImageSource.FromFile(photo.FullPath);
+            }
+            catch(Exception e)
+            {
+                await Shell.Current.DisplayAlert("Ошибка", e.Message, "");
+            }
+        }
+
+        private async void TakePhotoAsync()
+        {
+            try
+            {
+                var photo = await MediaPicker.CapturePhotoAsync(new MediaPickerOptions
+                {
+                    Title = $"xamarin.{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.png"
+                });
+                Image.Source = ImageSource.FromFile(photo.FullPath);
+            }
+            catch(Exception e)
+            {
+                await Shell.Current.DisplayAlert("Ошибка", e.Message, "");
+            }
         }
     }
 }

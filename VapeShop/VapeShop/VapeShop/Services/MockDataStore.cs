@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VapeShop.Models;
+using Xamarin.Forms;
 
 namespace VapeShop.Services
 {
@@ -24,7 +25,8 @@ namespace VapeShop.Services
                     "Компактный и эргономичный, прибор легко умещается на ладони.",
                     Cost = 1500,
                     BatteryPower = 370,
-                    Weight = 87
+                    Weight = 87,
+                    Image = new Image() { Source = "https://pc-consultant.ru/wp-content/uploads/2020/04/JUSTFOG-MINIFIT.jpg" }
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -36,7 +38,8 @@ namespace VapeShop.Services
                     "Аккумулятор в 400 мАч прекрасно держит заряд. Его хватает для использования в течении 2 часов.",
                     Cost = 1700,
                     BatteryPower = 400,
-                    Weight = 87
+                    Weight = 87,
+                    Image = new Image() { Source = "https://pc-consultant.ru/wp-content/uploads/2020/04/Suorin-Air.jpg" }
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -48,7 +51,8 @@ namespace VapeShop.Services
                     " позволяющий понять примерный уровень заряда аккумулятора.",
                     Cost = 2000,
                     BatteryPower = 1000,
-                    Weight = 120
+                    Weight = 120,
+                    Image = new Image() { Source = "https://pc-consultant.ru/wp-content/uploads/2020/04/SMOK-Trinity-Alpha-Resin-Pod.jpg"}
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -59,7 +63,8 @@ namespace VapeShop.Services
                     " эргономика и стиль.",
                     Cost = 2300,
                     BatteryPower = 900,
-                    Weight = 101
+                    Weight = 101,
+                    Image = new Image() { Source = "https://pc-consultant.ru/wp-content/uploads/2020/04/JUSTFOG-QPod.jpg"}
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -69,7 +74,8 @@ namespace VapeShop.Services
                     "При этом производитель предлагает большой выбор расцветок, а также возможность кастомизации девайса при помощи специальных наклеек.",
                     Cost = 2500,
                     BatteryPower = 800,
-                    Weight = 100
+                    Weight = 100,
+                    Image = new Image() { Source = "https://pc-consultant.ru/wp-content/uploads/2020/04/SMOK-Novo-2-Pod-Starter-Kit.png"}
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -79,7 +85,8 @@ namespace VapeShop.Services
                     "Коннектор 510 позволяет использовать в девайсе любые аксессуары, совместимые сданным коннектором.",
                     Cost = 2500,
                     BatteryPower = 1100,
-                    Weight = 100
+                    Weight = 100,
+                    Image = new Image() { Source = "https://pc-consultant.ru/wp-content/uploads/2020/04/Eleaf-iJust-Mini-Kit.jpg"}
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -90,7 +97,8 @@ namespace VapeShop.Services
                     "Максимальная мощность составляет 220 Вт.",
                     Cost = 2500,
                     BatteryPower = 3600,
-                    Weight = 120
+                    Weight = 120,
+                    Image = new Image() { Source = "https://pc-consultant.ru/wp-content/uploads/2020/04/Joyetech-ESPION-Tour-with-Cubis-Max-Kit.jpg"}
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -100,7 +108,8 @@ namespace VapeShop.Services
                     "Стильный и эргономичный дизайн также являются преимуществом данной модели.",
                     Cost = 2500,
                     BatteryPower = 2000,
-                    Weight = 250
+                    Weight = 250,
+                    Image = new Image() { Source = "https://pc-consultant.ru/wp-content/uploads/2020/04/Vaporesso-Target-PM80.jpg"}
                 },
                 new Vape { 
                     Id = Guid.NewGuid().ToString(), 
@@ -111,10 +120,12 @@ namespace VapeShop.Services
                     "Объём атомайзера в 5,5 мл позволяет редко прибегать к заправке.",
                     Cost = 3500,
                     BatteryPower = 3600,
-                    Weight = 150
+                    Weight = 150,
+                    Image = new Image() { Source = "https://pc-consultant.ru/wp-content/uploads/2020/04/Eleaf-iJust-21700-Starter-Kit.jpg"}
                 }
             };
         }
+
 
         public async Task<bool> AddVapeAsync(Vape item)
         {

@@ -11,12 +11,19 @@ namespace VapeShop.ViewModels
     {
         private string itemId;
         private string name;
+        private Image image;
         private int cost;
         private int battery;
         private int weight;
         private string description;
 
         public string Id { get; set; }
+
+        public Image Image
+        {
+            get => image;
+            set => SetProperty(ref image, value);
+        }
 
         public int Weight
         {
@@ -77,6 +84,7 @@ namespace VapeShop.ViewModels
                 Description = vape.Description;
                 BatteryPower = vape.BatteryPower;
                 Weight = vape.Weight;
+                Image = vape.Image;
             }
             catch (Exception)
             {

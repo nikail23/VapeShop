@@ -22,11 +22,15 @@
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="16" />
+                        <Image Source="{Binding Image.Source}" HeightRequest="200">
+                        </Image>
                         <Label Text="{Binding Cost,
                             StringFormat='\{0\} р.'}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
+                        <Button Text="Редактировать" HorizontalOptions="FillAndExpand"></Button>
+                            <Button Text="Удалить" HorizontalOptions="FillAndExpand"></Button>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
