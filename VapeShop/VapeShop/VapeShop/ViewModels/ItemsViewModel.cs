@@ -15,6 +15,7 @@ namespace VapeShop.ViewModels
         public ObservableCollection<Vape> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
+        public Command<Vape> DeleteVape { get; }
         public Command<Vape> EditButtonClicked { get; }
         public Command<Vape> ItemTapped { get; }
 
@@ -24,6 +25,7 @@ namespace VapeShop.ViewModels
             Items = new ObservableCollection<Vape>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
+            DeleteVape = new Command<Vape>(OnDeletingVape);
             EditButtonClicked = new Command<Vape>(OnEditButtonClicked);
             ItemTapped = new Command<Vape>(OnItemSelected);
 
@@ -69,9 +71,10 @@ namespace VapeShop.ViewModels
             }
         }
 
-        public async void DeleteVape(string vapeId)
+        public async void OnDeletingVape(Vape vape)
         {
-            await DataStore.DeleteVapeAsync(vapeId);
+            await DataStore.DeleteVapeAsync(vape.Id);
+            await ExecuteLoadItemsCommand();
         }
 
         private async void OnAddItem(object obj)

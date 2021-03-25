@@ -36,7 +36,14 @@
                             CommandParameter="{Binding .}"
                         >
                         </Button>
-                        <Button Text="Удалить" HorizontalOptions="FillAndExpand"></Button>
+                        <Button 
+                            Text="Удалить" 
+                            HorizontalOptions="FillAndExpand"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=DeleteVape}"
+                            CommandParameter="{Binding .}"
+                        >
+                            
+                        </Button>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
