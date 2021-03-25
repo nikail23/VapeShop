@@ -10,6 +10,6 @@ namespace VapeShop.Services
         Task<bool> UpdateVapeAsync(T vape);
         Task<bool> DeleteVapeAsync(string id);
         Task<T> GetVapeAsync(string id);
-        Task<IEnumerable<T>> GetVapesAsync(bool forceRefresh = false);
+        Task<List<T>> GetVapesAsync(bool forceRefresh = false);
     }
 }

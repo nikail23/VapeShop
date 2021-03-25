@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using VapeShop.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -12,6 +13,7 @@ namespace VapeShop.ViewModels
         private int cost;
         private int weight;
         private int battery;
+        private byte[] bytes;
         public Image Image { get; set; }
 
         public NewItemViewModel()
@@ -29,6 +31,12 @@ namespace VapeShop.ViewModels
         {
             return !String.IsNullOrWhiteSpace(name)
                 && !String.IsNullOrWhiteSpace(description);
+        }
+
+        public byte[] ImageBytes
+        {
+            get => bytes;
+            set => SetProperty(ref bytes, value);
         }
 
         public string Name
@@ -82,7 +90,8 @@ namespace VapeShop.ViewModels
                 Weight = Weight,
                 Cost = Cost,
                 BatteryPower = BatteryPower,
-                Image = Image
+                //Image = Image
+                ImageBytes = ImageBytes
             };
 
             await DataStore.AddVapeAsync(newItem);
@@ -96,6 +105,12 @@ namespace VapeShop.ViewModels
             try
             {
                 var photo = await MediaPicker.PickPhotoAsync();
+                using (var fileStream = File.OpenRead(photo.FullPath))
+                {
+                    byte[] array = new byte[fileStream.Length];
+                    fileStream.Read(array, 0, array.Length);
+                    ImageBytes = array;
+                }
                 Image.Source = ImageSource.FromFile(photo.FullPath);
             }
             catch(Exception e)
@@ -112,6 +127,12 @@ namespace VapeShop.ViewModels
                 {
                     Title = $"xamarin.{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.png"
                 });
+                using (var fileStream = File.OpenRead(photo.FullPath))
+                {
+                    byte[] array = new byte[fileStream.Length];
+                    fileStream.Read(array, 0, array.Length);
+                    ImageBytes = array;
+                }
                 Image.Source = ImageSource.FromFile(photo.FullPath);
             }
             catch(Exception e)

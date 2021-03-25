@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "20674879636",
-    "project_id": "vapeshop-f6ca5",
-    "storage_bucket": "vapeshop-f6ca5.appspot.com"
+    "project_number": "797916216300",
+    "firebase_url": "https://vapeshop-3a628-default-rtdb.firebaseio.com",
+    "project_id": "vapeshop-3a628",
+    "storage_bucket": "vapeshop-3a628.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:20674879636:android:7b6241b128d535e12fd481",
+        "mobilesdk_app_id": "1:797916216300:android:56028cd36991bc19e19ec9",
         "android_client_info": {
           "package_name": "com.companyname.vapeshop"
         }
       },
       "oauth_client": [
         {
-          "client_id": "20674879636-r7j0k375chob0nvi385hl2ihk6jr59il.apps.googleusercontent.com",
+          "client_id": "797916216300-ehmmdp5b72dp903g3t6h8fl146clsvd0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBYlKp_ba0_Q57kSSfU4g0C8jVQ7aThtQk"
+          "current_key": "AIzaSyDKbN97wdu8iloBCjsebkNNZyzWcqJvizM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "20674879636-r7j0k375chob0nvi385hl2ihk6jr59il.apps.googleusercontent.com",
+              "client_id": "797916216300-ehmmdp5b72dp903g3t6h8fl146clsvd0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

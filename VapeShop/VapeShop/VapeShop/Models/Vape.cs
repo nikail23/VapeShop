@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.IO;
 using Xamarin.Forms;
 
 namespace VapeShop.Models
@@ -7,16 +9,31 @@ namespace VapeShop.Models
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public Image Image { get; set; }
+        private byte[] bytes;
+        public byte[] ImageBytes
+        {
+            get 
+            {
+                return bytes;
+            }
+            set 
+            {
+                bytes = value;
+                SetImage();
+            } 
+        } 
         public int BatteryPower { get; set; }
         public int Weight { get; set; }
         public int Cost { get; set; }
-
+        [JsonIgnore]
+        public Image Image { get; set; }
         public string Description { get; set; }
 
-        public string GetCostString()
+        private void SetImage()
         {
-            return Cost + " р.";
+            Image = new Image();
+            var stream = new MemoryStream(ImageBytes);
+            Image.Source = ImageSource.FromStream(() => { return stream; });
         }
     }
 }

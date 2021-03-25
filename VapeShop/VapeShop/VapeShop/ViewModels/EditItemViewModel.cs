@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using VapeShop.Models;
 using Xamarin.Essentials;
@@ -14,12 +15,34 @@ namespace VapeShop.ViewModels
         private string itemId;
         private string name;
         private Image image;
+        private byte[] bytes;
         private int cost;
         private int battery;
         private int weight;
         private string description;
 
         public string Id { get; set; }
+
+        public byte[] ImageBytes
+        {
+            get => bytes;
+            set => SetProperty(ref bytes, value);
+        }
+
+        private Image GetImage(byte[] bytes)
+        {
+            if (bytes != null)
+            {
+                var image = new Image();
+                var stream = new MemoryStream(bytes);
+                image.Source = ImageSource.FromStream(() => { return stream; });
+                return image;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public Image Image
         {
@@ -93,7 +116,8 @@ namespace VapeShop.ViewModels
                 Description = vape.Description;
                 BatteryPower = vape.BatteryPower;
                 Weight = vape.Weight;
-                Image = vape.Image;
+                ImageBytes = vape.ImageBytes;
+                Image = GetImage(bytes);
             }
             catch (Exception)
             {
@@ -122,7 +146,8 @@ namespace VapeShop.ViewModels
                 Weight = Weight,
                 Cost = Cost,
                 BatteryPower = BatteryPower,
-                Image = Image
+                //Image = Image
+                ImageBytes = ImageBytes,
             };
 
             await DataStore.UpdateVapeAsync(newItem);
@@ -143,6 +168,12 @@ namespace VapeShop.ViewModels
             {
                 var photo = await MediaPicker.PickPhotoAsync();
                 Image.Source = ImageSource.FromFile(photo.FullPath);
+                using (var fileStream = File.OpenRead(photo.FullPath))
+                {
+                    byte[] array = new byte[fileStream.Length];
+                    fileStream.Read(array, 0, array.Length);
+                    ImageBytes = array;
+                }
             }
             catch (Exception e)
             {
@@ -158,6 +189,12 @@ namespace VapeShop.ViewModels
                 {
                     Title = $"xamarin.{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.png"
                 });
+                using (var fileStream = File.OpenRead(photo.FullPath))
+                {
+                    byte[] array = new byte[fileStream.Length];
+                    fileStream.Read(array, 0, array.Length);
+                    ImageBytes = array;
+                }
                 Image.Source = ImageSource.FromFile(photo.FullPath);
             }
             catch (Exception e)

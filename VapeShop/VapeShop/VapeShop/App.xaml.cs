@@ -13,7 +13,7 @@ namespace VapeShop
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<DataStore>();
             MainPage = new AppShell();
         }
 

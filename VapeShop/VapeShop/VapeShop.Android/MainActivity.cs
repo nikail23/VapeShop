@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Firebase;
 
 namespace VapeShop.Droid
 {
@@ -12,11 +13,12 @@ namespace VapeShop.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            Firebase.FirebaseApp.InitializeApp(Application.Context);
             base.OnCreate(savedInstanceState);
 
+            FirebaseApp.InitializeApp(Application.Context);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

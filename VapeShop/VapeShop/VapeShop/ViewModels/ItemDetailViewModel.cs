@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using VapeShop.Models;
 using Xamarin.Forms;
@@ -12,6 +13,7 @@ namespace VapeShop.ViewModels
         private string itemId;
         private string name;
         private Image image;
+        private byte[] bytes;
         private int cost;
         private int battery;
         private int weight;
@@ -19,10 +21,31 @@ namespace VapeShop.ViewModels
 
         public string Id { get; set; }
 
+        private Image GetImage(byte[] bytes)
+        {
+            if (bytes != null)
+            {
+                var image = new Image();
+                var stream = new MemoryStream(bytes);
+                image.Source = ImageSource.FromStream(() => { return stream; });
+                return image;
+            } else
+            {
+                return null;
+            }
+
+        }
+
         public Image Image
         {
             get => image;
             set => SetProperty(ref image, value);
+        }
+
+        public byte[] ImageBytes
+        {
+            get => bytes;
+            set => SetProperty(ref bytes, value);
         }
 
         public int Weight
@@ -84,7 +107,8 @@ namespace VapeShop.ViewModels
                 Description = vape.Description;
                 BatteryPower = vape.BatteryPower;
                 Weight = vape.Weight;
-                Image = vape.Image;
+                ImageBytes = vape.ImageBytes;
+                Image = GetImage(ImageBytes);
             }
             catch (Exception)
             {
