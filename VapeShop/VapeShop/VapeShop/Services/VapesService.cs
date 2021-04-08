@@ -27,7 +27,7 @@ namespace VapeShop.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<List<Vape>> GetVapesAsync(bool forceRefresh = false)
+        public async Task<List<Vape>> GetVapesAsync()
         {
             return (await firebase
             .Child("Vapes")
@@ -39,12 +39,11 @@ namespace VapeShop.Services
                 BatteryPower = item.Object.BatteryPower,
                 Description = item.Object.Description,
                 Weight = item.Object.Weight,
-                //Image = item.Object.Image
-                ImageBytes = item.Object.ImageBytes
+                ImageUrl = item.Object.ImageUrl
             }).ToList();
         }
 
-        public async Task UpdateVape(Vape vape)
+        public async Task UpdateVapeAsync(Vape vape)
         {
             var updatingVape = (await firebase
               .Child("Vapes")
@@ -56,7 +55,7 @@ namespace VapeShop.Services
               .PutAsync(vape);
         }
 
-        public async Task DeleteVape(string id)
+        public async Task DeleteVapeAsync(string id)
         {
             var deletingVape = (await firebase
               .Child("Vapes")
@@ -64,7 +63,7 @@ namespace VapeShop.Services
             await firebase.Child("Vapes").Child(deletingVape.Key).DeleteAsync();
         }
 
-        public async Task<Vape> GetVape(string id)
+        public async Task<Vape> GetVapeAsync(string id)
         {
             var vapes = await GetVapesAsync();
             await firebase

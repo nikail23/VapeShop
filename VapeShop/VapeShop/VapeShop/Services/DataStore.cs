@@ -22,26 +22,26 @@ namespace VapeShop.Services
 
         public async Task<bool> UpdateVapeAsync(Vape item)
         {
-            await helper.UpdateVape(item);
+            await helper.UpdateVapeAsync(item);
 
             return await Task.FromResult(true);
         }
 
         public async Task<bool> DeleteVapeAsync(string id)
         {
-            await helper.DeleteVape(id);
+            await helper.DeleteVapeAsync(id);
 
             return await Task.FromResult(true);
         }
 
         public async Task<Vape> GetVapeAsync(string id)
         {
-            return await helper.GetVape(id);
+            return await helper.GetVapeAsync(id);
         }
 
-        public async Task<List<Vape>> GetVapesAsync(bool forceRefresh = false)
+        public async Task<List<Vape>> GetVapesAsync()
         {
-            return await helper.GetVapesAsync(forceRefresh);
+            return await helper.GetVapesAsync();
         }
     }
 }

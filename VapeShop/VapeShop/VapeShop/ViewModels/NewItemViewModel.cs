@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using VapeShop.Models;
+using VapeShop.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -8,17 +9,16 @@ namespace VapeShop.ViewModels
 {
     public class NewItemViewModel : BaseViewModel
     {
+        private string id = Guid.NewGuid().ToString();
         private string name;
         private string description;
         private int cost;
         private int weight;
         private int battery;
-        private byte[] bytes;
-        public Image Image { get; set; }
+        private string imageUrl;
 
         public NewItemViewModel()
         {
-            Image = new Image();
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
             GetPhoto = new Command(GetPhotoAsync);
@@ -33,10 +33,10 @@ namespace VapeShop.ViewModels
                 && !String.IsNullOrWhiteSpace(description);
         }
 
-        public byte[] ImageBytes
-        {
-            get => bytes;
-            set => SetProperty(ref bytes, value);
+        public string ImageUrl 
+        { 
+            get => imageUrl;
+            set => SetProperty(ref imageUrl, value); 
         }
 
         public string Name
@@ -84,14 +84,13 @@ namespace VapeShop.ViewModels
         {
             Vape newItem = new Vape()
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = id,
                 Name = Name,
                 Description = Description,
                 Weight = Weight,
                 Cost = Cost,
                 BatteryPower = BatteryPower,
-                //Image = Image
-                ImageBytes = ImageBytes
+                ImageUrl = ImageUrl
             };
 
             await DataStore.AddVapeAsync(newItem);
@@ -105,13 +104,10 @@ namespace VapeShop.ViewModels
             try
             {
                 var photo = await MediaPicker.PickPhotoAsync();
-                using (var fileStream = File.OpenRead(photo.FullPath))
+                using (var stream = new FileStream(photo.FullPath, FileMode.OpenOrCreate))
                 {
-                    byte[] array = new byte[fileStream.Length];
-                    fileStream.Read(array, 0, array.Length);
-                    ImageBytes = array;
+                    ImageUrl = await ImagesService.StoreImage(stream, id);
                 }
-                Image.Source = ImageSource.FromFile(photo.FullPath);
             }
             catch(Exception e)
             {
@@ -125,15 +121,12 @@ namespace VapeShop.ViewModels
             {
                 var photo = await MediaPicker.CapturePhotoAsync(new MediaPickerOptions
                 {
-                    Title = $"xamarin.{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.png"
+                    Title = $"xamarin.{DateTime.Now:dd.MM.yyyy_hh.mm.ss}.png"
                 });
-                using (var fileStream = File.OpenRead(photo.FullPath))
+                using (var stream = new FileStream(photo.FullPath, FileMode.OpenOrCreate))
                 {
-                    byte[] array = new byte[fileStream.Length];
-                    fileStream.Read(array, 0, array.Length);
-                    ImageBytes = array;
+                    ImageUrl = await ImagesService.StoreImage(stream, id);
                 }
-                Image.Source = ImageSource.FromFile(photo.FullPath);
             }
             catch(Exception e)
             {

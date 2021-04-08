@@ -10,7 +10,7 @@
         <StackLayout Spacing="20" Padding="15" VerticalOptions="StartAndExpand">
             <Label Text="Модель:" FontSize="Medium" />
             <Label Text="{Binding Name}" FontSize="Small"/>
-            <Image Source="{Binding Image.Source}" HeightRequest="400"></Image>
+            <Image Source="{Binding ImageUrl}" HeightRequest="400"></Image>
             <Label Text="Стоимость:" FontSize="Medium" />
             <Label Text="{Binding Cost, StringFormat='\{0\} р.'}" FontSize="Small"/>
             <Label Text="Мощность батареи:" FontSize="Medium" />

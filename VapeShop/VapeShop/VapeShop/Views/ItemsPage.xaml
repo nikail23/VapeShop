@@ -22,7 +22,7 @@
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="16" />
-                        <Image Source="{Binding Image.Source}" HeightRequest="200">
+                        <Image Source="{Binding ImageUrl}" HeightRequest="200">
                         </Image>
                         <Label Text="{Binding Cost,
                             StringFormat='\{0\} р.'}"

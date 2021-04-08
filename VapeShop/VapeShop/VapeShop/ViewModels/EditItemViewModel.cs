@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using VapeShop.Models;
+using VapeShop.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -14,8 +15,7 @@ namespace VapeShop.ViewModels
     {
         private string itemId;
         private string name;
-        private Image image;
-        private byte[] bytes;
+        private string imageUrl;
         private int cost;
         private int battery;
         private int weight;
@@ -23,31 +23,10 @@ namespace VapeShop.ViewModels
 
         public string Id { get; set; }
 
-        public byte[] ImageBytes
+        public string ImageUrl
         {
-            get => bytes;
-            set => SetProperty(ref bytes, value);
-        }
-
-        private Image GetImage(byte[] bytes)
-        {
-            if (bytes != null)
-            {
-                var image = new Image();
-                var stream = new MemoryStream(bytes);
-                image.Source = ImageSource.FromStream(() => { return stream; });
-                return image;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Image Image
-        {
-            get => image;
-            set => SetProperty(ref image, value);
+            get => imageUrl;
+            set => SetProperty(ref imageUrl, value);
         }
 
         public int Weight
@@ -96,7 +75,6 @@ namespace VapeShop.ViewModels
         public EditItemViewModel()
         {
             Title = "Редактирование";
-            Image = new Image();
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
             GetPhoto = new Command(GetPhotoAsync);
@@ -116,8 +94,7 @@ namespace VapeShop.ViewModels
                 Description = vape.Description;
                 BatteryPower = vape.BatteryPower;
                 Weight = vape.Weight;
-                ImageBytes = vape.ImageBytes;
-                Image = GetImage(bytes);
+                ImageUrl = vape.ImageUrl;
             }
             catch (Exception)
             {
@@ -146,8 +123,7 @@ namespace VapeShop.ViewModels
                 Weight = Weight,
                 Cost = Cost,
                 BatteryPower = BatteryPower,
-                //Image = Image
-                ImageBytes = ImageBytes,
+                ImageUrl = ImageUrl
             };
 
             await DataStore.UpdateVapeAsync(newItem);
@@ -167,12 +143,9 @@ namespace VapeShop.ViewModels
             try
             {
                 var photo = await MediaPicker.PickPhotoAsync();
-                Image.Source = ImageSource.FromFile(photo.FullPath);
-                using (var fileStream = File.OpenRead(photo.FullPath))
+                using (var stream = new FileStream(photo.FullPath, FileMode.OpenOrCreate))
                 {
-                    byte[] array = new byte[fileStream.Length];
-                    fileStream.Read(array, 0, array.Length);
-                    ImageBytes = array;
+                    ImageUrl = await ImagesService.StoreImage(stream, Id);
                 }
             }
             catch (Exception e)
@@ -187,15 +160,12 @@ namespace VapeShop.ViewModels
             {
                 var photo = await MediaPicker.CapturePhotoAsync(new MediaPickerOptions
                 {
-                    Title = $"xamarin.{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.png"
+                    Title = $"xamarin.{DateTime.Now:dd.MM.yyyy_hh.mm.ss}.png"
                 });
-                using (var fileStream = File.OpenRead(photo.FullPath))
+                using (var stream = new FileStream(photo.FullPath, FileMode.OpenOrCreate))
                 {
-                    byte[] array = new byte[fileStream.Length];
-                    fileStream.Read(array, 0, array.Length);
-                    ImageBytes = array;
+                    ImageUrl = await ImagesService.StoreImage(stream, Id);
                 }
-                Image.Source = ImageSource.FromFile(photo.FullPath);
             }
             catch (Exception e)
             {

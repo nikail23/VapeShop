@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using VapeShop.Models;
+using VapeShop.Services;
 using VapeShop.Views;
 using Xamarin.Forms;
 
@@ -39,7 +40,7 @@ namespace VapeShop.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetVapesAsync(true);
+                var items = await DataStore.GetVapesAsync();
                 foreach (var item in items)
                 {
                     Items.Add(item);
@@ -73,6 +74,7 @@ namespace VapeShop.ViewModels
 
         public async void OnDeletingVape(Vape vape)
         {
+            await ImagesService.DeleteImageAsync(vape.Id);
             await DataStore.DeleteVapeAsync(vape.Id);
             await ExecuteLoadItemsCommand();
         }

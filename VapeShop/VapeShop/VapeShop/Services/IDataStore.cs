@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VapeShop.Models;
 
 namespace VapeShop.Services
 {
@@ -10,6 +11,6 @@ namespace VapeShop.Services
         Task<bool> UpdateVapeAsync(T vape);
         Task<bool> DeleteVapeAsync(string id);
         Task<T> GetVapeAsync(string id);
-        Task<List<T>> GetVapesAsync(bool forceRefresh = false);
+        Task<List<T>> GetVapesAsync();
     }
 }
