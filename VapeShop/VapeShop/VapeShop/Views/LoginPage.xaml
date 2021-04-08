@@ -3,41 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="clr-namespace:VapeShop.ViewModels" x:DataType="viewmodels:LoginViewModel"
+             xmlns:helpers="clr-namespace:VapeShop.Helpers"
              mc:Ignorable="d"
              x:Class="VapeShop.Views.LoginPage"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
             <StackLayout IsVisible="{Binding IsLogin}">
-                <Label Text="Войдите в приложение" />
+                <Label Text="{helpers:Translate LoginPageLabel}" />
                 <Entry Text="{Binding Login}"
-                       Placeholder="Введите логин" />
+                       Placeholder="{helpers:Translate EntryLogin}" />
                 <Entry Text="{Binding Password}"
-                       Placeholder="Введите пароль"
+                       Placeholder="{helpers:Translate EntryPassword}"
                        IsPassword="True" />
-                <Label Text="Введенные данные содержат ошибку" 
-                       IsVisible="{Binding AreCredentialsInvalid}" 
-                       TextColor="Red" />
-                <Button VerticalOptions="Center" Text="Войти" Command="{Binding LoginCommand}"/>
-                <Button VerticalOptions="Center" Text="Создать новый аккаунт" Command="{Binding ToRegister}"/>
+                <Button VerticalOptions="Center" Text="{helpers:Translate LoginPageButton}" Command="{Binding LoginCommand}"/>
+                <Button VerticalOptions="Center" Text="{helpers:Translate LoginPageToRegister}" Command="{Binding ToRegister}"/> 
             </StackLayout>
             <StackLayout IsVisible="{Binding IsRegister}">
-                <Label Text="Зарегестрируйтесь в приложении" />
+                <Label Text="{helpers:Translate RegisterPageLabel}" /> 
                 <Entry Text="{Binding Username}"
-                       Placeholder="Введите имя пользователя" />
+                       Placeholder="{helpers:Translate RegisterPageEntryUsername}" /> 
                 <Entry Text="{Binding Login}"
-                       Placeholder="Введите логин" />
+                       Placeholder="{helpers:Translate EntryLogin}" />
                 <Entry Text="{Binding Password}"
-                       Placeholder="Введите пароль"
+                       Placeholder="{helpers:Translate EntryPassword}"
                        IsPassword="True" />
-                <Entry Text="{Binding PasswordRepeat}"
-                       Placeholder="Повторите пароль"
+                <Entry Text="{Binding PasswordRepeat}" 
+                       Placeholder="{helpers:Translate RegisterPageEntryRepeatPassword}"
                        IsPassword="True" />
-                <Label Text="Введенные данные содержат ошибку" 
-                       IsVisible="{Binding AreCredentialsInvalid}" 
-                       TextColor="Red" />
-                <Button VerticalOptions="Center" Text="Зарегестрироваться" Command="{Binding RegisterCommand}"/>
-                <Button VerticalOptions="Center" Text="Уже есть аккаунт" Command="{Binding ToLogin}"/>
+                <Button VerticalOptions="Center" Text="{helpers:Translate RegisterPageButton}" Command="{Binding RegisterCommand}"/>
+                <Button VerticalOptions="Center" Text="{helpers:Translate RegisterPageToLogin}" Command="{Binding ToLogin}"/> 
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

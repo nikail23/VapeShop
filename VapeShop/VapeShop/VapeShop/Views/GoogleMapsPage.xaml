@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:VapeShop.Helpers"
              x:Class="VapeShop.Views.GoogleMapsPage"
-             Title="{Binding Title}">
+             Title="{helpers:Translate GooglePageName}">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Это будет страница Гугл Карт!"

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.Multilingual;
+using System;
+using System.Globalization;
 using VapeShop.Services;
 using VapeShop.Views;
 using Xamarin.Forms;
@@ -12,6 +14,8 @@ namespace VapeShop
         public App()
         {
             InitializeComponent();
+
+            CrossMultilingual.Current.CurrentCultureInfo = new CultureInfo("ru");
 
             DependencyService.Register<DataStore>();
             MainPage = new AppShell();
