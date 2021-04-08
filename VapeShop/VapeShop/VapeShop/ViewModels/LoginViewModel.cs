@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using VapeShop.Services;
 using System.Windows.Input;
+using VapeShop.Models;
 
 namespace VapeShop.ViewModels
 {
@@ -33,12 +34,24 @@ namespace VapeShop.ViewModels
 
         private async void OnLoginClicked()
         {
-            
+            var loginResult = await usersService.ValidateLoginAsync(Login, Password);
+            if (loginResult)
+            {
+                await Shell.Current.GoToAsync("//Catalog");
+            }
         }
 
         private async void OnRegisterClicked()
         {
-            
+            var isExistedUser = await usersService.CheckUserAsync(Username);
+            if (!isExistedUser)
+            {
+                var user = new User() { Username = Username, Login = Login, Password = Password };
+
+                await usersService.AddUserAsync(user);
+
+                NavToLogin();
+            }
         }
 
         private void NavToRegister()

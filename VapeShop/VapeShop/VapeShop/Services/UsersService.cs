@@ -21,21 +21,34 @@ namespace VapeShop.Services
             users = new List<User>();
         }
 
-        public async Task<string> CheckUserAsync(string login, string password)
+        public async Task<bool> CheckUserAsync(string username)
         {
-            var result = "";
+            await LoadUsersAsync();
 
+            foreach (var user in users)
+            {
+                if (user.Username == username)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public async Task<bool> ValidateLoginAsync(string login, string password)
+        {
             await LoadUsersAsync();
 
             foreach(var user in users)
             {
                 if (user.Login == login && user.Password == password)
                 {
-                    return user.Username;
+                    return true;
                 }
             }
 
-            return result;
+            return false;
         }
 
         public async Task<bool> AddUserAsync(User user)
