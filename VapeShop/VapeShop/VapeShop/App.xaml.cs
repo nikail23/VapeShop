@@ -15,6 +15,8 @@ namespace VapeShop
 
             DependencyService.Register<DataStore>();
             MainPage = new AppShell();
+
+            Shell.Current.GoToAsync("//LoginPage");
         }
 
         protected override void OnStart()

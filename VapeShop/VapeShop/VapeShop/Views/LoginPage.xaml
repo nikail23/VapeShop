@@ -2,13 +2,43 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="clr-namespace:VapeShop.ViewModels" x:DataType="viewmodels:LoginViewModel"
              mc:Ignorable="d"
              x:Class="VapeShop.Views.LoginPage"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+            <StackLayout IsVisible="{Binding IsLogin}">
+                <Label Text="Войдите в приложение" />
+                <Entry Text="{Binding Login}"
+                       Placeholder="Введите логин" />
+                <Entry Text="{Binding Password}"
+                       Placeholder="Введите пароль"
+                       IsPassword="True" />
+                <Label Text="Введенные данные содержат ошибку" 
+                       IsVisible="{Binding AreCredentialsInvalid}" 
+                       TextColor="Red" />
+                <Button VerticalOptions="Center" Text="Войти" Command="{Binding LoginCommand}"/>
+                <Button VerticalOptions="Center" Text="Создать новый аккаунт" Command="{Binding ToRegister}"/>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding IsRegister}">
+                <Label Text="Зарегестрируйтесь в приложении" />
+                <Entry Text="{Binding Username}"
+                       Placeholder="Введите имя пользователя" />
+                <Entry Text="{Binding Login}"
+                       Placeholder="Введите логин" />
+                <Entry Text="{Binding Password}"
+                       Placeholder="Введите пароль"
+                       IsPassword="True" />
+                <Entry Text="{Binding PasswordRepeat}"
+                       Placeholder="Повторите пароль"
+                       IsPassword="True" />
+                <Label Text="Введенные данные содержат ошибку" 
+                       IsVisible="{Binding AreCredentialsInvalid}" 
+                       TextColor="Red" />
+                <Button VerticalOptions="Center" Text="Зарегестрироваться" Command="{Binding RegisterCommand}"/>
+                <Button VerticalOptions="Center" Text="Уже есть аккаунт" Command="{Binding ToLogin}"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

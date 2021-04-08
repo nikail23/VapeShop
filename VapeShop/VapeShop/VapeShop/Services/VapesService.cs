@@ -9,11 +9,11 @@ using VapeShop.Models;
 
 namespace VapeShop.Services
 {
-    public class FirebaseHelper
+    public class VapesService
     {
         private FirebaseClient firebase;
 
-        public FirebaseHelper(string firebaseUrl)
+        public VapesService(string firebaseUrl)
         {
             firebase = new FirebaseClient(firebaseUrl);
         }
@@ -46,22 +46,22 @@ namespace VapeShop.Services
 
         public async Task UpdateVape(Vape vape)
         {
-            var toUpdatePerson = (await firebase
+            var updatingVape = (await firebase
               .Child("Vapes")
               .OnceAsync<Vape>()).Where(a => a.Object.Id == vape.Id).FirstOrDefault();
 
             await firebase
               .Child("Vapes")
-              .Child(toUpdatePerson.Key)
+              .Child(updatingVape.Key)
               .PutAsync(vape);
         }
 
         public async Task DeleteVape(string id)
         {
-            var toDeletePerson = (await firebase
+            var deletingVape = (await firebase
               .Child("Vapes")
               .OnceAsync<Vape>()).Where(a => a.Object.Id == id).FirstOrDefault();
-            await firebase.Child("Vapes").Child(toDeletePerson.Key).DeleteAsync();
+            await firebase.Child("Vapes").Child(deletingVape.Key).DeleteAsync();
         }
 
         public async Task<Vape> GetVape(string id)

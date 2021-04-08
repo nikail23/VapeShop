@@ -11,7 +11,7 @@ namespace VapeShop.Services
 {
     public class DataStore : IDataStore<Vape>
     {
-        FirebaseHelper helper = new FirebaseHelper("https://vapeshop-3a628-default-rtdb.firebaseio.com/");
+        VapesService helper = new VapesService("https://vapeshop-3a628-default-rtdb.firebaseio.com/");
 
         public async Task<bool> AddVapeAsync(Vape item)
         {
