@@ -126,6 +126,9 @@
   <data name="CancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
   <data name="ChooseImage" xml:space="preserve">
     <value>Choose image</value>
   </data>
@@ -148,7 +151,7 @@
     <value>Google Maps</value>
   </data>
   <data name="ItemDetailPageName" xml:space="preserve">
-    <value>Vape datails</value>
+    <value>Vape details</value>
   </data>
   <data name="ItemsPageName" xml:space="preserve">
     <value>VapeShop</value>
@@ -168,6 +171,9 @@
   <data name="LoginPageToRegister" xml:space="preserve">
     <value>Create a new account</value>
   </data>
+  <data name="Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
   <data name="RegisterPageButton" xml:space="preserve">
     <value>Register</value>
   </data>
@@ -185,6 +191,9 @@
   </data>
   <data name="RegisterPageToLogin" xml:space="preserve">
     <value>Already have an account</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="SettingsPageName" xml:space="preserve">
     <value>Settings</value>

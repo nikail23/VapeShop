@@ -8,7 +8,6 @@ namespace VapeShop.ViewModels
     {
         public GoogleMapsViewModel()
         {
-            Title = "Карта";
         }
     }
 }

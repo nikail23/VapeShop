@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using VapeShop.Models;
+using VapeShop.Resources;
 using VapeShop.Services;
 using VapeShop.Views;
 using Xamarin.Forms;
@@ -22,7 +23,6 @@ namespace VapeShop.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Vape Shop";
             Items = new ObservableCollection<Vape>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
@@ -89,7 +89,6 @@ namespace VapeShop.ViewModels
             if (item == null)
                 return;
 
-            // This will push the EditItemPage onto the navigation stack
             string path = $"{nameof(EditItemPage)}?{nameof(EditItemViewModel.ItemId)}={item.Id}";
             await Shell.Current.GoToAsync(path);
         }
@@ -99,7 +98,6 @@ namespace VapeShop.ViewModels
             if (item == null)
                 return;
 
-            // This will push the ItemDetailPage onto the navigation stack
             string path = $"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}";
             await Shell.Current.GoToAsync(path);
         }

@@ -8,7 +8,6 @@ namespace VapeShop.ViewModels
     {
         public SettingsViewModel()
         {
-            Title = "Настройки";
         }
     }
 }

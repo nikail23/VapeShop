@@ -71,7 +71,6 @@ namespace VapeShop.ViewModels
 
         public ItemDetailViewModel()
         {
-            Title = "Подробнее";
         }
 
         public async void LoadItemId(string vapeId)

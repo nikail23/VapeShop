@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using VapeShop.Resources;
 using VapeShop.ViewModels;
 using VapeShop.Views;
 using Xamarin.Forms;
@@ -16,5 +17,6 @@ namespace VapeShop
             Routing.RegisterRoute(nameof(EditItemPage), typeof(EditItemPage));
         }
 
+        
     }
 }

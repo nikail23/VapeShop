@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Plugin.Multilingual;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using VapeShop.Models;
+using VapeShop.Resources;
 using VapeShop.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,6 +18,8 @@ namespace VapeShop.Views
         {
             InitializeComponent();
             BindingContext = new NewItemViewModel();
+
+            Title = AppResources.AddPageName;
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Plugin.Multilingual;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VapeShop.Models;
+using VapeShop.Resources;
 using VapeShop.ViewModels;
 using VapeShop.Views;
 using Xamarin.Forms;
@@ -27,6 +29,9 @@ namespace VapeShop.Views
         {
             base.OnAppearing();
             _viewModel.OnAppearing();
+
+            Title = AppResources.ItemsPageName;
+            AddButton.Text = AppResources.AddButton;
         }
     }
 }

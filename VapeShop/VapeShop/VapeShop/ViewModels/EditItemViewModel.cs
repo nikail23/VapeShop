@@ -74,7 +74,6 @@ namespace VapeShop.ViewModels
 
         public EditItemViewModel()
         {
-            Title = "Редактирование";
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
             GetPhoto = new Command(GetPhotoAsync);

@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:VapeShop.Views"
+       xmlns:helpers="clr-namespace:VapeShop.Helpers"
        Title="VapeShop"
        x:Class="VapeShop.AppShell">
 
@@ -30,9 +31,9 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Каталог" Icon="icon_feed.png" Route="Catalog" ContentTemplate="{DataTemplate local:ItemsPage}" />
-        <ShellContent Title="Карта" Icon="icon_map.png" Route="Map" ContentTemplate="{DataTemplate local:GoogleMapsPage}" />
-        <ShellContent Title="Настройки" Icon="icon_settings.png" Route="Settings" ContentTemplate="{DataTemplate local:SettingsPage}" />
+        <ShellContent x:Name="Catalog" Title="{helpers:Translate Catalog}" Icon="icon_feed.png" Route="Catalog" ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <ShellContent x:Name="Map" Title="{helpers:Translate Map}" Icon="icon_map.png" Route="Map" ContentTemplate="{DataTemplate local:GoogleMapsPage}" />
+        <ShellContent x:Name="Settings" Title="{helpers:Translate Settings}" Icon="icon_settings.png" Route="Settings" ContentTemplate="{DataTemplate local:SettingsPage}" />
     </TabBar>
 
     <!--

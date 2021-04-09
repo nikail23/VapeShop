@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:helpers="clr-namespace:VapeShop.Helpers"
+             xmlns:viewmodels="clr-namespace:VapeShop.ViewModels" 
+             x:DataType="viewmodels:ItemsViewModel"
              x:Class="VapeShop.Views.ItemsPage"
-             Title="{helpers:Translate ItemsPageName}"
              xmlns:local="clr-namespace:VapeShop.ViewModels"  
              xmlns:model="clr-namespace:VapeShop.Models"  
-             x:Name="BrowseItemsPage">
+             x:Name="BrowseItemsPage"
+             Title="{helpers:Translate ItemsPageName}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{helpers:Translate AddButton}" Command="{Binding AddItemCommand}" />
+        <ToolbarItem x:Name="AddButton" Text="{helpers:Translate AddButton}" Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>
 
     <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">

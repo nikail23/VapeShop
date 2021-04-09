@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:helpers="clr-namespace:VapeShop.Helpers"
+             xmlns:viewmodels="clr-namespace:VapeShop.ViewModels" 
+             x:DataType="viewmodels:GoogleMapsViewModel"
              x:Class="VapeShop.Views.GoogleMapsPage"
              Title="{helpers:Translate GooglePageName}">
     <ContentPage.Content>

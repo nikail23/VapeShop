@@ -126,6 +126,9 @@
   <data name="CancelButton" xml:space="preserve">
     <value>Отмена</value>
   </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Каталог</value>
+  </data>
   <data name="ChooseImage" xml:space="preserve">
     <value>Выбрать фото</value>
   </data>
@@ -168,6 +171,9 @@
   <data name="LoginPageToRegister" xml:space="preserve">
     <value>Создать новый аккаунт</value>
   </data>
+  <data name="Map" xml:space="preserve">
+    <value>Карта</value>
+  </data>
   <data name="RegisterPageButton" xml:space="preserve">
     <value>Зарегестрироваться</value>
   </data>
@@ -185,6 +191,9 @@
   </data>
   <data name="RegisterPageToLogin" xml:space="preserve">
     <value>Уже есть аккаунт</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
   </data>
   <data name="SettingsPageName" xml:space="preserve">
     <value>Настройки</value>
