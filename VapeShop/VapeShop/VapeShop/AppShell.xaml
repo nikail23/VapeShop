@@ -3,6 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:VapeShop.Views"
        xmlns:helpers="clr-namespace:VapeShop.Helpers"
+       xmlns:resources="clr-namespace:VapeShop.Resources"
        Title="VapeShop"
        x:Class="VapeShop.AppShell">
 
@@ -31,9 +32,9 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent x:Name="Catalog" Title="{helpers:Translate Catalog}" Icon="icon_feed.png" Route="Catalog" ContentTemplate="{DataTemplate local:ItemsPage}" />
-        <ShellContent x:Name="Map" Title="{helpers:Translate Map}" Icon="icon_map.png" Route="Map" ContentTemplate="{DataTemplate local:GoogleMapsPage}" />
-        <ShellContent x:Name="Settings" Title="{helpers:Translate Settings}" Icon="icon_settings.png" Route="Settings" ContentTemplate="{DataTemplate local:SettingsPage}" />
+        <ShellContent x:Name="Catalog" Title="{x:Static resources:AppResources.Catalog}" Icon="icon_feed.png" Route="Catalog" ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <ShellContent x:Name="Map" Title="{x:Static resources:AppResources.Map}" Icon="icon_map.png" Route="Map" ContentTemplate="{DataTemplate local:GoogleMapsPage}" />
+        <ShellContent x:Name="Settings" Title="{x:Static resources:AppResources.Settings}" Icon="icon_settings.png" Route="Settings" ContentTemplate="{DataTemplate local:SettingsPage}" />
     </TabBar>
 
     <!--

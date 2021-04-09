@@ -6,11 +6,5 @@
              x:DataType="viewmodels:GoogleMapsViewModel"
              x:Class="VapeShop.Views.GoogleMapsPage"
              Title="{helpers:Translate GooglePageName}">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Это будет страница Гугл Карт!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+
 </ContentPage>
