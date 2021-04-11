@@ -12,6 +12,7 @@
                     <x:String>Русский</x:String>
                     <x:String>English</x:String>
                 </Picker.Items>
+                <Picker.SelectedIndex>0</Picker.SelectedIndex>
             </Picker>
         </StackLayout>
     </ContentPage.Content>

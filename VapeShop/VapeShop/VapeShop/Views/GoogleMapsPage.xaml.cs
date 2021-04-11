@@ -24,7 +24,7 @@ namespace VapeShop.Views
                 VerticalOptions = LayoutOptions.FillAndExpand
             };
 
-            map.MoveToRegion(new MapSpan(new Position(53.89937328850188, 27.491324426791767), 3, 3));
+            map.MoveToRegion(new MapSpan(new Position(53.89937328850188, 27.491324426791767), 0.5, 0.5));
 
             var position = new Position(53.89937328850188, 27.491324426791767);
             var pin = new Pin
@@ -33,6 +33,11 @@ namespace VapeShop.Views
                 Position = position,
                 Label = "Vape Shop",
                 Address = "Улица Янки Мавра, дом 21, квартира 77"
+            };
+
+            pin.MarkerClicked += async (s, args) =>
+            {
+                await Shell.Current.GoToAsync("///Catalog");
             };
 
             map.Pins.Add(pin);
