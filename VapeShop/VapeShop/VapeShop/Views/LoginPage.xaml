@@ -16,6 +16,9 @@
                 <Entry Text="{Binding Password}"
                        Placeholder="{helpers:Translate EntryPassword}"
                        IsPassword="True" />
+                <Label Text="{Binding ErrorText}"
+                       TextColor="Red"
+                       IsVisible="{Binding AreCredentialsInvalid}"/>
                 <Button VerticalOptions="Center" Text="{helpers:Translate LoginPageButton}" Command="{Binding LoginCommand}"/>
                 <Button VerticalOptions="Center" Text="{helpers:Translate LoginPageToRegister}" Command="{Binding ToRegister}"/> 
             </StackLayout>
@@ -31,6 +34,9 @@
                 <Entry Text="{Binding PasswordRepeat}" 
                        Placeholder="{helpers:Translate RegisterPageEntryRepeatPassword}"
                        IsPassword="True" />
+                <Label Text="{Binding ErrorText}"
+                       TextColor="Red"
+                       IsVisible="{Binding AreCredentialsInvalid}"/>
                 <Button VerticalOptions="Center" Text="{helpers:Translate RegisterPageButton}" Command="{Binding RegisterCommand}"/>
                 <Button VerticalOptions="Center" Text="{helpers:Translate RegisterPageToLogin}" Command="{Binding ToLogin}"/> 
             </StackLayout>

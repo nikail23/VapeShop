@@ -38,6 +38,10 @@ namespace VapeShop.ViewModels
             if (loginResult)
             {
                 await Shell.Current.GoToAsync("//Catalog");
+            } else
+            {
+                ErrorText = "Проверьте правильность введенных данных!";
+                AreCredentialsInvalid = true;
             }
         }
 
@@ -51,6 +55,10 @@ namespace VapeShop.ViewModels
                 await usersService.AddUserAsync(user);
 
                 NavToLogin();
+            } else
+            {
+                ErrorText = "Пользователь с введенными данными уже существует!";
+                AreCredentialsInvalid = true;
             }
         }
 
@@ -58,12 +66,14 @@ namespace VapeShop.ViewModels
         {
             IsRegister = true;
             IsLogin = false;
+            AreCredentialsInvalid = false;
         }
 
         private void NavToLogin()
         {
             IsRegister = false;
             IsLogin = true;
+            AreCredentialsInvalid = false;
         }
 
         private string username = "";
@@ -80,6 +90,9 @@ namespace VapeShop.ViewModels
 
         private bool areCredentialsInvalid = false;
         public bool AreCredentialsInvalid { get => areCredentialsInvalid; set => SetProperty(ref areCredentialsInvalid, value); }
+
+        private string errorText = "";
+        public string ErrorText { get => errorText; set => SetProperty(ref errorText, value); }
 
         private bool isRegister = false;
         public bool IsRegister { get => isRegister; set => SetProperty(ref isRegister, value); }
